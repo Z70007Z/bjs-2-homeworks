@@ -40,8 +40,8 @@ function makeWork(arrOfArr, func) {
   let max = - Infinity;
 
   for (let i = 0; i < arrOfArr.length; i++) {
-    let sumArr = func(arrOfArr[i]);
-    if (func(arrOfArr[i]) > max) {
+    const sumArr = func(arrOfArr[i]);
+    if (sumArr > max) {
        max = sumArr;   
     }
   }
