@@ -66,7 +66,6 @@ class DetectiveBook  extends Book {
 }
 
 // Задание 2
-let state
 
 class Library {
 	constructor(name) {
@@ -83,14 +82,75 @@ class Library {
 
     findBookBy(type, value) {
         
-        if (this.books) {
-
-        }
-
-        return;
+        for (i = 0; i < this.books.length; i++) {
+            if (this.books[i][type] === value) {
+                return this.books[i];
+                break;
+            }     
+        }      
+        return null;       
+       
     }
 
     giveBookByName(bookName) {
-        return;
+
+        for (i = 0; i < this.books.length; i++) {
+            if (this.books[i].name === bookName) {
+                this.books.splice(this.books.indexOf(this.books[i]), 1);
+                return this.books[i];
+                break;
+            }  
+        } 
+        return null;
+       
     }
+}
+
+// Задание 3
+
+class Student {
+  //  ваш код
+    constructor(fullName) {
+        this.name = fullName;
+        this.journal = [];
+    }  
+    
+    addDataJournal(value, subject) {
+        if ((value > 0) && (value < 6) && (typeof value == "number")) {
+            return this.journal.push({
+                subject: subject,
+                value: value
+            });
+            // return  this.journal[subject].push(value);
+        } else {
+            return console.log("Ошибка, оценка должна быть числом от 1 до 5");
+        }
+    }
+
+    getAverageScore(name) {
+
+        let typeSum = 0;
+        let j = 0;
+        for (i = 0; i < this.journal.length; i++) {
+            if (this.journal[i].subject === name) {
+                typeSum += this.journal[i].value;
+                j =+ 1;
+            }
+        }
+        if (j !== 0) {
+            typeSum = typeSum / j;
+        }
+        return typeSum;
+
+    }   
+
+    getAverageScoreAll() {
+        // const subjectsName = Object.keys(this.journal)
+        let sumOfSubject = 0;
+        for (i = 0; i < this.journal.length; i++) {
+            sumOfSubject += this.getAverageScore(this.journal[i].subject);
+        }
+        return sumOfSubject / this.journal.length; 
+    }
+
 }
