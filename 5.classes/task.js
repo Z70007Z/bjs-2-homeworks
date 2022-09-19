@@ -82,27 +82,24 @@ class Library {
 
     findBookBy(type, value) {
         
-        for (i = 0; i < this.books.length; i++) {
+        for (let i = 0; i < this.books.length; i++) {
             if (this.books[i][type] === value) {
                 return this.books[i];
-                break;
             }     
         }      
-        return null;       
-       
+        return null;             
     }
 
     giveBookByName(bookName) {
 
-        for (i = 0; i < this.books.length; i++) {
+        for (let i = 0; i < this.books.length; i++) {
             if (this.books[i].name === bookName) {
+                let getBook = this.books[i];
                 this.books.splice(this.books.indexOf(this.books[i]), 1);
-                return this.books[i];
-                break;
+                return getBook;               
             }  
         } 
-        return null;
-       
+        return null;       
     }
 }
 
@@ -115,26 +112,25 @@ class Student {
         this.journal = [];
     }  
     
-    addDataJournal(value, subject) {
+    addMark(value, subject) {
         if ((value > 0) && (value < 6) && (typeof value == "number")) {
             return this.journal.push({
                 subject: subject,
                 value: value
             });
-            // return  this.journal[subject].push(value);
         } else {
             return console.log("Ошибка, оценка должна быть числом от 1 до 5");
         }
     }
 
-    getAverageScore(name) {
+    getAverageBySubject(name) {
 
         let typeSum = 0;
         let j = 0;
-        for (i = 0; i < this.journal.length; i++) {
+        for (let i = 0; i < this.journal.length; i++) {
             if (this.journal[i].subject === name) {
                 typeSum += this.journal[i].value;
-                j =+ 1;
+                j += 1;
             }
         }
         if (j !== 0) {
@@ -144,11 +140,10 @@ class Student {
 
     }   
 
-    getAverageScoreAll() {
-        // const subjectsName = Object.keys(this.journal)
+    getAverage() {
         let sumOfSubject = 0;
-        for (i = 0; i < this.journal.length; i++) {
-            sumOfSubject += this.getAverageScore(this.journal[i].subject);
+        for (let i = 0; i < this.journal.length; i++) {
+            sumOfSubject += this.getAverageBySubject(this.journal[i].subject);
         }
         return sumOfSubject / this.journal.length; 
     }
