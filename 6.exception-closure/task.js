@@ -60,11 +60,10 @@ function getTriangle(sideA,sideB,sideC) {
         return triangleNew;  
     }
     catch(error) {       
-        // return () => {
-
-            const triangleError = new triangleError();
-            triangleError.getPerimeter();
-            triangleError.getArea();
-        // }
+        const triangleError = new triangleError();
+        return () => {
+           triangleError.getPerimeter();
+           triangleError.getArea();
+        };
     }   
 }
