@@ -41,29 +41,20 @@ class Triangle {
     }
 }
 
-class triangleError {
-    constructor() {
-    }     
-
-    getPerimeter() {
-        return "Ошибка! Треугольник не существует";
-    }
-
-    getArea() {
-        return "Ошибка! Треугольник не существует";
-    }                     
-}
-
 function getTriangle(sideA,sideB,sideC) {
     try {
         const triangleNew = new Triangle(sideA, sideB, sideC);
         return triangleNew;  
     }
     catch(error) {       
-        const triangleError = new triangleError();
-        return () => {
-           triangleError.getPerimeter();
-           triangleError.getArea();
-        };
+        let tr = {
+                getPerimeter() {
+                    return "Ошибка! Треугольник не существует";
+                },
+                getArea() {
+                    return "Ошибка! Треугольник не существует";
+                } 
+            };
+            return tr;
     }   
 }
